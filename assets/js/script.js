@@ -8,6 +8,10 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 function startGame() {
     startButton.classList.add('hide')
@@ -27,7 +31,7 @@ function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
-        button.innerText = answer
+        button.innerText = answer.text
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
@@ -38,6 +42,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+    clearStatusClass(document.body)
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -51,6 +56,12 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+        nextButton.classlist.remove('hide')
+    } else {
+        startButton.innerText = 'Restart'
+        startButton.classList.remove('hide')
+    }
 }
 
 function setStatusClass(element, correct) {
@@ -64,15 +75,16 @@ function setStatusClass(element, correct) {
 
 function clearStatusClass(element) {
     element.classList.remove('correct')
-    element.classList.remove('weong')
+    element.classList.remove('wrong')
 }
 const questions = [
     {
         question: 'What is',
-        answers: [{ text: 'yup', correct: true },
-        { text: 'nope', correct: false },
-        { text: 'oh naw', correct: false },
-        { text: 'no', correct: false }
+        answers: [
+            { text: 'yup', correct: true },
+            { text: 'nope', correct: false },
+            { text: 'oh naw', correct: false },
+            { text: 'no', correct: false }
         ]
     }
 ]
