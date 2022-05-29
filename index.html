@@ -5,29 +5,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Quiz</title>
+    <title>JavaScript Quiz</title>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
-    <div class="container">
-        <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-            </div>
+    <!--start quiz-->
+    <div class="start-btn">
+        <button>Start Quiz</button>
+    </div>
+
+    <div class="info-box">
+        <div class="info-title">
+            <span>Quiz Rules:</span>
         </div>
-        <div class="controls">
-            <div>
-                <button id="start-btn" class="start-btn btn">Start</button>
-            </div>
-            <button id="next-btn" class="next-btn btn hide">Next</button>
+        <div class="info-list">
+            <div class="info">1.You will have <span>90 seconds</span> to complete the quiz.</div>
+            <div class="info">2.You can only answer each question once.</div>
+            <div class="info">3.You will have <span>10 seconds</span>deducted for each wrong answer.</div>
+            <div class="info">4.You will receive points for each correct answer.</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">Exit Quiz</button>
+            <button class="restart">Continue</button>
         </div>
     </div>
-    <script src="./assets/js/script.js"></script>
+
+    <!--Quiz box-->
+    <div class="quiz-box">
+        <header>
+            <div class="title">JavaScript Quiz</div>
+            <div class="timer">
+                <div class="time-text">Time Left</div>
+                <div class="timer-sec">90</div>
+            </div>
+        </header>
+        <section>
+            <div class="que-text">
+                <span>Where is the correct place to insert a JavaScript?</span>
+            </div>
+            <div class="option-list">
+                <div class="option">
+                    <span>The BODY section</span>
+                    <span class="material-symbols-outlined" id="check">
+                        done
+                    </span>
+                </div>
+                <div class="option">
+                    <span>The HEAD section</span>
+                    <span class="material-symbols-outlined" id="cross">
+                        close
+                    </span>
+                </div>
+                <div class="option">
+                    <span>The HEADER section</span>
+                </div>
+                <div class="option">
+                    <span>Both the HEAD section and the BODY section are correct</span>
+                </div>
+            </div>
+        </section>
+        <!--Quiz footer-->
+        <footer>
+            <div class="total-que">
+                <span>
+                    <P>2</P>Of<p>5</p>Questions
+                </span>
+            </div>
+            <button class="next-btn">Next Question</button>
+        </footer>
+    </div>
+
+    <!--Results-->
+
+    <div class="result-box">
+        <span class="material-symbols-outlined" id="star">
+            grade
+        </span>
+        <div class="complete-text">You've completed the quiz!</div>
+        <div class="score-text">
+            <span> and sorry, You only got <p>2</p> out of <p>5</p> </span>
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay Quiz</button>
+            <button class="quit">Quit Quiz</button>
+        </div>
+    </div>
 </body>
 
 </html>
