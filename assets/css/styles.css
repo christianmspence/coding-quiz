@@ -6,8 +6,16 @@
     font-family: 'Roboto' , sans-serif;
 }
 
+:root {
+    --color-main: #f070a1;
+    --color-white: #fff;
+    --color-hover: #12c998;
+
+
+}
+
 body {
-    background: #007bff;
+    background: var(--color-main);
 }
 
 /* start button styles*/
@@ -35,18 +43,18 @@ transition: all 0.3s ease;
 .start_btn button{
     font-size: 25px;
     font-weight: 500;
-    color: #007bff;
+    color: var(--color-main);
     padding: 15px 30px;
     outline: none;
     border: none;
     border-radius: 5px;
-    background: #ffff;
+    background: var(--color-white);
     cursor: pointer;
 }
 
 .info_box {
     width: 540px;
-    background: #ffff;
+    background: var(--color-white);
     border-radius: 5px;
     opacity: 0;
     pointer-events: none;
@@ -71,7 +79,7 @@ transition: all 0.3s ease;
 
 .info_box .info_list .info span {
     font-weight: 600;
-    color: #007bff;
+    color: #16ffbd;
 }
 
 .info_box .buttons {
@@ -90,7 +98,7 @@ transition: all 0.3s ease;
     outline: none;
     border: 1px solid transparent;
     border-radius: 5px;
-    color: #ffff;
+    color: var(--color-white);
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -98,27 +106,27 @@ transition: all 0.3s ease;
 }
 
 .buttons button.restart{
-    color: #fff;
-background: #007bff;
+    color: var(--color-white);
+background: var(--color-main);
 }
 
 .buttons button.restart:hover{
-    background: #0263ca;
+    background: var(--color-hover);
 }
 
 .buttons button.quit{
-    color: #007bff;
+    color: var(--color-main);
 }
 
 .buttons button.quit:hover{
-    color: #fff;
-    background: #007bff;
+    color: var(--color-white);
+    background: var(--color-main);
 }
 
 .quiz_box{
 
     width: 550px;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 5px;
     opacity: 0;
     pointer-events: none;
@@ -130,7 +138,7 @@ background: #007bff;
     z-index: 99;
     height: 70px;
     padding: 0 30px;
-    background: #fff;
+    background: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -149,7 +157,7 @@ background: #007bff;
     justify-content: space-between;
     width: 145px;
     height: 45px;
-    background: #cce5ff;
+    background: #16ffbd;
     border: 1px solid #b8daff;
     border-radius: 5px;
     padding: 0 8px;
@@ -164,20 +172,20 @@ background: #007bff;
 .quiz_box header .timer .timer_sec {
     font-size: 18px;
     font-weight: 500;
-    background: #343a40;
+    background: #c34271;
     height: 30px;
     width: 40px;
-    color: #fff;
+    color: var(--color-white);
     text-align: center;
     line-height: 30px;
     border-radius: 5px;
-    border: 1px solid #343a40;
+    border: 1px solid #c34271;
     user-select: none;
 }
 
 .quiz_box section {
     padding: 25px 30px 20px 30px;
-    background: #fff;
+    background: var(--color-white);
 
 }
 
@@ -192,8 +200,8 @@ background: #007bff;
 }
 
 section .option_list .option{
-    background: aliceblue;
-    border: 1px solid #84c5fe;
+    background: #f7b5cf;
+    border: 1px solid #;
     border-radius: 5px;
     padding: 8px 15px;
     margin-bottom: 15px;
@@ -206,7 +214,7 @@ section .option_list .option{
 
 section .option_list .option:hover{
     color: #004085;
-    background: #cce5ff;
+    background: #16ffbd;
     border-color: #b8daff;
 }
 
@@ -266,20 +274,20 @@ footer .next_btn{
     font-weight: 400;
     border: none;
     outline: none;
-    color: #fff;
-    background: #007bff;
+    color: var(--color-white);
+    background: var(--color-main);
     border-radius: 5px;
-    border: 1px solid #007bff;
+    border: 1px solid var(--color-main);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 footer .next_btn:hover{
-    background: #0263ca;
+    background: var(--color-hover);
 }
 
 .result_box {
-    background: #fff;
+    background: var(--color-white);
     width: 450px;
     padding: 25px 30px;
     border-radius: 5px;
@@ -295,7 +303,7 @@ footer .next_btn:hover{
 
 #star{
     font-size:100px;
-    color: #007bff;
+    color: var(--color-main);
     margin-bottom: 10px;
 }
 
@@ -331,7 +339,7 @@ footer .next_btn:hover{
     font-size: 18px;
     font-weight: 500;
     border-radius: 5px;
-    border: 1px solid #007bff;
+    border: 1px solid var(--color-main);
     cursor: pointer;
     transition: all 0.3s ease;
 }
