@@ -232,7 +232,7 @@ line-height: 24px;
 pointer-events: none;
 }
 
-#check {
+#check{
     color: #23903c;
     border-color: #23903c;
     background: #d4edda;
@@ -247,6 +247,16 @@ pointer-events: none;
     color: #155724;
     background: #d4edda;
     border-color: #b8daff;
+}
+
+.option_list .option.incorrect {
+    color: #a42834;
+    background: #d4edda;
+    border-color: #b8daff;
+}
+
+.option_list .option.disabled{
+    pointer-events: none;
 }
 
 .quiz_box footer {
