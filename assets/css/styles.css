@@ -10,15 +10,13 @@
     --color-main: #f070a1;
     --color-white: #fff;
     --color-hover: #12c998;
-
-
 }
 
 body {
     background: var(--color-main);
 }
 
-/* start button styles*/
+/* game start styles*/
 .start_btn,
 .info_box,
 .quiz_box,
@@ -123,6 +121,7 @@ background: var(--color-main);
     background: var(--color-main);
 }
 
+/*quiz box styles*/
 .quiz_box{
 
     width: 550px;
@@ -157,7 +156,7 @@ background: var(--color-main);
     justify-content: space-between;
     width: 145px;
     height: 45px;
-    background: #16ffbd;
+    background: #2be9a0;
     border: 1px solid #b8daff;
     border-radius: 5px;
     padding: 0 8px;
@@ -201,7 +200,7 @@ background: var(--color-main);
 
 section .option_list .option{
     background: #f7b5cf;
-    border: 1px solid #;
+    border: 1px solid #f7b5f0;
     border-radius: 5px;
     padding: 8px 15px;
     margin-bottom: 15px;
@@ -286,6 +285,7 @@ footer .next_btn:hover{
     background: var(--color-hover);
 }
 
+/*result box styles*/
 .result_box {
     background: var(--color-white);
     width: 450px;
