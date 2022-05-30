@@ -243,6 +243,12 @@ pointer-events: none;
     border-color: #a42834;
 }
 
+.option_list .option.correct {
+    color: #155724;
+    background: #d4edda;
+    border-color: #b8daff;
+}
+
 .quiz_box footer {
     height: 60px;
     width: 100%;
