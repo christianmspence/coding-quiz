@@ -3,12 +3,12 @@ let questions = [
     {
         numb: 1,
         question: "Where is the correct place to insert a JavaScript?",
-        answer: "The <body> section",
+        answer: "The BODY section",
         options: [
-            "The <body> section",
-            "The <head> section",
-            "The <header> section",
-            "Both the <head> section and the <body> section are correct"
+            "The BODY section",
+            "The HEAD section",
+            "The HEADER section",
+            "Both the HEAD section and the BODY section are correct"
         ]
     },
     {
