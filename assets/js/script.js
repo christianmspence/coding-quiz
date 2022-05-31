@@ -31,7 +31,7 @@ continue_btn.onclick = () => {
 let timeValue = 30;
 let que_count = 0;
 let que_numb = 1;
-let userScore = 0;
+let score = 0;
 let counter;
 
 var restart_quiz = result_box.querySelector(".buttons .restart");
@@ -40,10 +40,10 @@ var quit_quiz = result_box.querySelector(".buttons .quit");
 restart_quiz.onclick = () => {
     quiz_box.classList.add("activeQuiz"); //show quiz box
     result_box.classList.remove("activeResult"); //hide result box
-     timeValue = 30;
-     que_count = 0;
-     que_numb = 1;
-     userScore = 0;
+    timeValue = 30;
+    que_count = 0;
+    que_numb = 1;
+    score = 0;
     showQuetions(que_count);
     queCounter(que_numb);
     clearInterval(counter);
@@ -68,12 +68,13 @@ next_btn.onclick = () => {
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
-        timeText.textContent = "Time Left"; //change the timeText to Time Left
-        next_btn.classList.remove("show"); //hide the next button
+        timeText.textContent = "Time Left"; 
+        next_btn.classList.remove("show"); 
     } else {
         clearInterval(counter);
         showResultBox();
     }
+
 }
 //retreiving questions and options from array
 function showQuestions(index) {
@@ -87,7 +88,7 @@ function showQuestions(index) {
     option_list.innerHTML = option_tag;
     //debugger;
     var option = option_list.querySelectorAll(".option");
-    
+
     for (let i = 0; i < option.length; i++) {
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
@@ -101,9 +102,9 @@ let crossIcon = '<span class="material-symbols-outlined" id="cross"> close </spa
 function optionSelected(answer) {
     let userAns = answer.textContent;
     let correctAns = questions[que_count].answer;
-   var allOptions = option_list.children.length;
+    var allOptions = option_list.children.length;
     if (userAns == correctAns) {
-        userScore += 1;
+        score += 1;
         console.log("Answer is correct");
         answer.classList.add("correct");
         answer.insertAdjacentHTML("beforeend", checkIcon);
@@ -136,6 +137,18 @@ function showResultBox() {
     quiz_box.classList.remove("activeQuiz");
     result_box.classList.add("activeResult");
     var scoreText = result_box.querySelector(".score_text");
+    if (score > 3) {
+        let scoreTag = '<span> CONGRATS! You got <p>' + score + '</p> out of <p>' + questions.length + '</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+    else if (score > 1) {
+        let scoreTag = '<span> You got <p>' + score + '</p> out of <p>' + questions.length + '</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
+    else {
+        let scoreTag = '<span> You got <p>'   + score +   '</p> out of <p>' + questions.length + ',Try again!</p></span>';
+        scoreText.innerHTML = scoreTag;
+    }
 }
 
 function startTimer(time) {
@@ -150,13 +163,22 @@ function startTimer(time) {
         if (time < 0) {
             clearInterval(counter);
             timeCount.textContent = "0";
-
+            const allOptions = option_list.children.length;
+            let correctAns = questions[que_count].answer;
+            for (i = 0; i < allOptions; i++) {
+                if (option_list.children[i].textContent == correctAns) { //if there is an option which is matched to an array answer
+                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+                }
+            }
             for (i = 0; i < allOptions; i++) {
                 option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
             }
+            next_btn.classList.add("show");
         }
     }
 }
+
 
 function timePenalty() {
     timeLine = - 10;
