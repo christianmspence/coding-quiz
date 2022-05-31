@@ -31,7 +31,8 @@ transition: all 0.3s ease;
 }
 
 .info_box.activeInfo,
-.quiz_box.activeQuiz{
+.quiz_box.activeQuiz,
+.result_box.activeResult{
     z-index: 5;
     opacity: 1;
     pointer-events: auto;
@@ -299,6 +300,12 @@ footer .next_btn{
 
 footer .next_btn:hover{
     background: var(--color-hover);
+}
+
+footer button.show{
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
 }
 
 /*result box styles*/

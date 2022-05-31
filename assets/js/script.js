@@ -4,13 +4,15 @@ var info_box = document.querySelector(".info_box");
 var exit_btn = info_box.querySelector(".buttons .quit");
 var continue_btn = document.querySelector(".buttons .restart");
 var quiz_box = document.querySelector(".quiz_box");
+var result_box = document.querySelector(".result_box");
 var option_list = document.querySelector(".option_list");
 var timeCount = quiz_box.querySelector(" .timer .timer_sec");
+var timeLine = quiz_box.querySelector(".timer .time_line");
 
 // start button clicked
 start_btn.onclick = () => {
     info_box.classList.add("activeInfo");
-    startTimer(60)
+    startTimer(30)
 }
 
 // exit button clicked
@@ -26,11 +28,38 @@ continue_btn.onclick = () => {
     queCounter(1);
 }
 
+let timeValue = 30;
 let que_count = 0;
 let que_numb = 1;
+let userScore = 0;
 let counter;
 
+var restart_quiz = result_box.querySelector(".buttons .restart");
+var quit_quiz = result_box.querySelector(".buttons .quit");
+
+restart_quiz.onclick = () => {
+    quiz_box.classList.add("activeQuiz"); //show quiz box
+    result_box.classList.remove("activeResult"); //hide result box
+     timeValue = 30;
+     que_count = 0;
+     que_numb = 1;
+     userScore = 0;
+    showQuetions(que_count);
+    queCounter(que_numb);
+    clearInterval(counter);
+    startTimer(timeValue);
+    timeText.textContent = "Time Left";
+    next_btn.classList.remove("show");
+}
+
+// if quitQuiz button clicked
+quit_quiz.onclick = () => {
+    window.location.reload();
+}
+
+
 var next_btn = quiz_box.querySelector(".next_btn");
+var bottom_ques_counter = quiz_box.querySelector(".total_que");
 
 //if next button clicked
 next_btn.onclick = () => {
@@ -39,8 +68,11 @@ next_btn.onclick = () => {
         que_numb++;
         showQuestions(que_count);
         queCounter(que_numb);
+        timeText.textContent = "Time Left"; //change the timeText to Time Left
+        next_btn.classList.remove("show"); //hide the next button
     } else {
-        console.log("Questions completed");
+        clearInterval(counter);
+        showResultBox();
     }
 }
 //retreiving questions and options from array
@@ -55,6 +87,7 @@ function showQuestions(index) {
     option_list.innerHTML = option_tag;
     //debugger;
     var option = option_list.querySelectorAll(".option");
+    
     for (let i = 0; i < option.length; i++) {
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
@@ -68,8 +101,9 @@ let crossIcon = '<span class="material-symbols-outlined" id="cross"> close </spa
 function optionSelected(answer) {
     let userAns = answer.textContent;
     let correctAns = questions[que_count].answer;
-    let allOptions = option_list.children.length;
+   var allOptions = option_list.children.length;
     if (userAns == correctAns) {
+        userScore += 1;
         console.log("Answer is correct");
         answer.classList.add("correct");
         answer.insertAdjacentHTML("beforeend", checkIcon);
@@ -77,6 +111,8 @@ function optionSelected(answer) {
         console.log("Answer is wrong");
         answer.classList.add("incorrect");
         answer.insertAdjacentHTML("beforeend", crossIcon);
+        //function timePenalty();
+
 
         //when answer is incorrect, correct answer is shown
         for (let i = 0; i < allOptions; i++) {
@@ -91,6 +127,15 @@ function optionSelected(answer) {
     for (let i = 0; i < allOptions; i++) {
         option_list.children[i].classList.add("disabled");
     }
+    next_btn.classList.add("show");
+}
+
+
+function showResultBox() {
+    info_box.classList.remove("activeInfo");
+    quiz_box.classList.remove("activeQuiz");
+    result_box.classList.add("activeResult");
+    var scoreText = result_box.querySelector(".score_text");
 }
 
 function startTimer(time) {
@@ -98,12 +143,29 @@ function startTimer(time) {
     function timer() {
         timeCount.textContent = time;
         time--;
+        if (time < 9) {
+            let addZero = timeCount.textContent;
+            timeCount.textContent = "0" + addZero;
+        }
+        if (time < 0) {
+            clearInterval(counter);
+            timeCount.textContent = "0";
+
+            for (i = 0; i < allOptions; i++) {
+                option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+            }
+        }
     }
+}
+
+function timePenalty() {
+    timeLine = - 10;
+    timeCount.textContent = time;
 }
 
 
 function queCounter(index) {
-    var bottom_ques_counter = quiz_box.querySelector(".total_que");
+
     let totalQuesCountTag = '<span><p>' + index + '</p>of<P>' + questions.length + '</p>Questions</span>';
     bottom_ques_counter.innerHTML = totalQuesCountTag;
 }
